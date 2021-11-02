@@ -37,12 +37,13 @@ jobs:
         with:
           API_NAME: account-server-api
           API_TARGET_NAME: account-server-api
-  # publish:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: publish
-  #       uses: InformaticsMatters/openapi-js-client-generator/publish-client@main
-  #       env:
-  #       NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-  #       with:
-  #         CI_COMMIT_TAG: ${{ CI_COMMIT_TAG }}
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: publish
+        uses: InformaticsMatters/openapi-js-client-generator/publish-client@main
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+        with:
+          CI_COMMIT_TAG: ${{ github.event.client_payload.CI_COMMIT_TAG }}
