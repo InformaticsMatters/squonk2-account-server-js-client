@@ -38,6 +38,7 @@ jobs:
         uses: InformaticsMatters/openapi-js-client-generator/build-client@main
         with:
           API_NAME: account-server-api
+          API_TARGET_NAME: account-server-api
           GITLAB_API: ${GITLAB_API}
           GITLAB_API_TOKEN: ${GITLAB_API_TOKEN}
           GITLAB_PROJECT: ${GITLAB_PROJECT}
