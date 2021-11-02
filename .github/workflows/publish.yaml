@@ -40,6 +40,6 @@ jobs:
       - name: publish
         uses: InformaticsMatters/openapi-js-client-generator/publish-client@main
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           CI_COMMIT_TAG: ${{ github.event.client_payload.CI_COMMIT_TAG }}
