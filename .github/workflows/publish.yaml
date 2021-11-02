@@ -37,10 +37,6 @@ jobs:
         with:
           API_NAME: account-server-api
           API_TARGET_NAME: account-server-api
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: publish
         uses: InformaticsMatters/openapi-js-client-generator/publish-client@main
         env:
