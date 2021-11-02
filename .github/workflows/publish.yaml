@@ -43,4 +43,4 @@ jobs:
           CI_COMMIT_TAG: ${{ github.event.client_payload.CI_COMMIT_TAG }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
