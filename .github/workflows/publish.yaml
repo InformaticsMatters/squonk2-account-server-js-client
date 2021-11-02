@@ -41,3 +41,5 @@ jobs:
         uses: InformaticsMatters/openapi-js-client-generator/publish-client@main
         with:
           CI_COMMIT_TAG: ${{ github.event.client_payload.CI_COMMIT_TAG }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
