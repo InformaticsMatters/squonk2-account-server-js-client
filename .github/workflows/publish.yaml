@@ -18,7 +18,7 @@ name: publish
 
 on:
   repository_dispatch:
-    types: account-server
+    types: account-server-api
 
 env:
   NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
