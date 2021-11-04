@@ -1,18 +1,4 @@
 ---
-# Actions that take place on the main branch,
-# driven by external dm-api events.
-
-# -----------------
-# Control variables (GitHub Secrets)
-# -----------------
-#
-# (n/a)
-#
-# -----------
-# Environment (GitHub Environments)
-# -----------
-#
-# Environment         (n/a)
 
 name: publish
 

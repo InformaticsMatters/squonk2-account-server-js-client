@@ -2,5 +2,8 @@
   "conventionalCommits.scopes": [
     "config",
     "Readme"
-  ]
+  ],
+  "[yaml]": {
+    "editor.formatOnSave": false,
+  },
 }
