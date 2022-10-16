@@ -5,5 +5,5 @@
     "type": "git",
     "url": "https://github.com/InformaticsMatters/squonk2-account-server-js-client"
   },
-  "description": "TypeScript client for the Squonk Account Server API. Generated from the Open API spec with orval. Provides React Hooks to fetch data with react-query using Axios under-the-hood."
+  "description": "TypeScript client for the Squonk Account Server API. Generated from the Open API spec with orval. Provides React Hooks to fetch data with react-query v4 using Axios under-the-hood."
 }
