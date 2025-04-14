@@ -2,17 +2,17 @@ name: publish
 
 on:
   repository_dispatch:
-    types: [account-server-api]
+    types: account-server-api
   workflow_dispatch:
     inputs:
-      pipeline_id:
-        description: 'CI Pipeline ID'
+      CI_PIPELINE_ID:
+        description: 'GitLab Pipeline ID'
+        type: string
         required: true
-        default: 'default_pipeline_id'  # Adjust default as necessary
-      commit_tag:
-        description: 'Git Commit Tag'
+      CI_COMMIT_TAG:
+        description: 'Commit tag'
+        type: string
         required: true
-        default: 'v1.0.0'  # Adjust default as necessary
 
 jobs:
   build:
@@ -36,6 +36,7 @@ jobs:
       - name: Publish
         uses: InformaticsMatters/squonk2-openapi-js-client-generator/publish-client@main
         env:
+          CI_PIPELINE_ID: ${{ github.event.inputs.pipeline_id || github.event.client_payload.CI_PIPELINE_ID }}
           CI_COMMIT_TAG: ${{ github.event.inputs.commit_tag || github.event.client_payload.CI_COMMIT_TAG }}
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
