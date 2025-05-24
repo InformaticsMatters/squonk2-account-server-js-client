@@ -21,9 +21,6 @@ jobs:
       - name: Build
         uses: InformaticsMatters/squonk2-openapi-js-client-generator/build-client@main
         env:
-          # Choose CI_PIPELINE_ID from workflow_dispatch input or repository_dispatch payload
-          CI_PIPELINE_ID: ${{ github.event.inputs.pipeline_id || github.event.client_payload.CI_PIPELINE_ID }}
-          # Choose CI_COMMIT_TAG from workflow_dispatch input or repository_dispatch payload
           CI_COMMIT_TAG: ${{ github.event.inputs.commit_tag || github.event.client_payload.CI_COMMIT_TAG }}
           GITLAB_API: https://gitlab.com/api/v4/projects
           GITLAB_API_TOKEN: ${{ secrets.ACCOUNT_SERVER_TOKEN }}
@@ -33,14 +30,14 @@ jobs:
         with:
           API_NAME: account-server-api
           API_TARGET_NAME: account-server-api
-      # - name: Publish
-      #   uses: InformaticsMatters/squonk2-openapi-js-client-generator/publish-client@main
+      - name: Publish
+        uses: InformaticsMatters/squonk2-openapi-js-client-generator/publish-client@main
+        env:
+          CI_PIPELINE_ID: ${{ github.event.inputs.pipeline_id || github.event.client_payload.CI_PIPELINE_ID }}
+          CI_COMMIT_TAG: ${{ github.event.inputs.commit_tag || github.event.client_payload.CI_COMMIT_TAG }}
+          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Docs
+      #   uses: InformaticsMatters/squonk2-openapi-js-client-generator/publish-docs@main
       #   env:
-      #     CI_PIPELINE_ID: ${{ github.event.inputs.pipeline_id || github.event.client_payload.CI_PIPELINE_ID }}
-      #     CI_COMMIT_TAG: ${{ github.event.inputs.commit_tag || github.event.client_payload.CI_COMMIT_TAG }}
-      #     NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # # - name: Docs
-      # #   uses: InformaticsMatters/squonk2-openapi-js-client-generator/publish-docs@main
-      # #   env:
-      # #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
