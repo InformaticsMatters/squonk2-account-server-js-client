@@ -2,15 +2,16 @@ name: publish
 
 on:
   repository_dispatch:
-    types: account-server-api
+    types:
+      - "account-server-api"
   workflow_dispatch:
     inputs:
       CI_PIPELINE_ID:
-        description: 'GitLab Pipeline ID'
+        description: "GitLab Pipeline ID"
         type: string
         required: true
       CI_COMMIT_TAG:
-        description: 'Commit tag'
+        description: "Commit tag"
         type: string
         required: true
 
@@ -18,6 +19,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Debug CI_COMMIT_TAG
+        run: |
+          echo "CI_COMMIT_TAG: ${{ github.event.inputs.CI_COMMIT_TAG }}"
+          echo "Client Payload CI_COMMIT_TAG: ${{ github.event.client_payload.CI_COMMIT_TAG }}"
+        shell: bash
+
       - name: Build
         uses: InformaticsMatters/squonk2-openapi-js-client-generator/build-client@main
         env:
@@ -27,6 +34,8 @@ jobs:
           GITLAB_PROJECT: 39515634
           OPENAPI_FILE: openapi.yaml
           OPENAPI_PATH: app%2Fopenapi
+          NODE_JS_VERSION: ${{ vars.NODE_JS_VERSION }}
+          PNPM_VERSION: ${{ vars.PNPM_VERSION }}
         with:
           API_NAME: account-server-api
           API_TARGET_NAME: account-server-api
